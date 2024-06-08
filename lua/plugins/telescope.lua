@@ -1,7 +1,7 @@
 return {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.5",
-    dependencies = { 
+    dependencies = {
         "nvim-lua/plenary.nvim",
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
     },
@@ -21,7 +21,7 @@ return {
                     cwd_only = true,
                 }
             },
-        }) 
+        })
         local builtin = require("telescope.builtin")
         vim.keymap.set("n", "<C-o>", builtin.find_files, {})
         vim.keymap.set("n", "<C-e>", builtin.oldfiles, {})

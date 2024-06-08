@@ -24,5 +24,16 @@ return {
                 }
             end,
         })
+
+        vim.api.nvim_create_autocmd("LspAttach", {
+            group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+            callback = function(ev)
+                local opts = { buffer = ev.buf, silent = true }
+                vim.keymap.set({"n", "v", "i"}, "<F1>", vim.lsp.buf.hover, opts)
+                vim.keymap.set({"n", "v"}, 'gd', vim.lsp.buf.definition, opts)
+                vim.keymap.set({"n", "v", "i"}, '<A-Enter>', vim.lsp.buf.code_action, opts)
+                vim.keymap.set({"n", "v", "i"}, "<C-p>", function() vim.lsp.buf.signature_help() end, opts)
+            end,
+        })
     end
 }
