@@ -9,6 +9,10 @@ return {
                 comments = false,
                 operators = false,
                 folds = false,
+            },
+            overrides = {
+                -- https://github.com/ellisonleao/gruvbox.nvim/issues/230#issuecomment-1493883602
+                SignColumn = { link = "Normal" },
             }
         })
         vim.cmd.colorscheme "gruvbox"

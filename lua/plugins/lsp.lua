@@ -5,6 +5,9 @@ return {
         "williamboman/mason-lspconfig.nvim"
     },
     config = function()
+        vim.diagnostic.config({
+            update_in_insert = true,
+        })
         require("mason").setup()
         require("mason-lspconfig").setup()
         require("mason-lspconfig").setup_handlers({
@@ -24,6 +27,7 @@ return {
                 }
             end,
         })
+
 
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),

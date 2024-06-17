@@ -1,6 +1,8 @@
 vim.opt.langmap = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
+vim.opt.signcolumn = 'yes:2'
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
