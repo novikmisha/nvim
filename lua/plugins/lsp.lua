@@ -24,6 +24,9 @@ return {
                 lspconfig.lua_ls.setup {
                     settings = {
                         Lua = {
+                            hint = {
+                                enable = true
+                            },
                             diagnostics = {
                                 globals = { "vim" }
                             }
@@ -42,6 +45,14 @@ return {
                 vim.keymap.set({"n", "v"}, 'gd', vim.lsp.buf.definition, opts)
                 vim.keymap.set({"n", "v", "i"}, '<A-Enter>', vim.lsp.buf.code_action, opts)
                 vim.keymap.set({"n", "v", "i"}, "<C-p>", function() vim.lsp.buf.signature_help() end, opts)
+
+                local id = vim.tbl_get(ev, 'data', 'client_id')
+                local client = id and vim.lsp.get_client_by_id(id)
+                if client == nil or not client.supports_method('textDocument/inlayHint') then
+                    return
+                end
+
+                vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
             end,
         })
     end
