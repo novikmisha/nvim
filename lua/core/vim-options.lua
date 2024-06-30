@@ -1,5 +1,6 @@
 vim.loader.enable()
 
+vim.opt.background = "dark"
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = 'yes:2'

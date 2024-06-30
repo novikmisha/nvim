@@ -16,5 +16,15 @@ return {
             }
         })
         vim.cmd.colorscheme "gruvbox"
+
+        vim.cmd([[ hi! NoiceCmdlinePopup guibg=#282828 ]])
+        vim.cmd([[ hi! NoiceCmdlinePopupBorder guifg=#fabd2f guibg=NONE]])
+
+        vim.cmd([[ hi! NoiceCmdlineIconCmdline guifg=#fabd2f guibg=NONE ]])
+        vim.cmd([[ hi! NoiceCmdlineIconHelp guifg=#fabd2f guibg=NONE ]])
+        vim.cmd([[ hi! NoiceCmdlineIconInput guifg=#fabd2f guibg=NONE ]])
+        vim.cmd([[ hi! NoiceCmdlineIconLua guifg=#fabd2f guibg=NONE ]])
+        vim.cmd([[ hi! NoiceCmdlineIconSearch guifg=#fabd2f guibg=NONE ]])
+
     end
 }
