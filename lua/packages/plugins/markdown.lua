@@ -25,7 +25,12 @@ return {
                         },
 
                         repeat_amount = function ()
-                            return 59
+                            local w = vim.api.nvim_win_get_width(0);
+                            local l = vim.api.nvim_buf_line_count(0);
+
+                            l = vim.fn.strchars(tostring(l)) + 4;
+
+                            return math.min(59, math.ceil((w - (l + 3)) / 2));
                         end
                     },
                     {
@@ -46,7 +51,12 @@ return {
                         },
 
                         repeat_amount = function ()
-                            return 59
+                            local w = vim.api.nvim_win_get_width(0);
+                            local l = vim.api.nvim_buf_line_count(0);
+
+                            l = vim.fn.strchars(tostring(l)) + 4;
+
+                            return math.min(59, math.ceil((w - (l + 3)) / 2));
                         end
                     },
                 }
