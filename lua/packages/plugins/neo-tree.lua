@@ -12,6 +12,7 @@ return {
             use_popups_for_input = false,
             auto_restore_session_experimental = true,
             close_if_last_window = true,
+            use_libuv_file_watcher = true,
             filesystem = {
                 follow_current_file = {
                     enabled = true, -- This will find and focus the file in the active buffer every time
