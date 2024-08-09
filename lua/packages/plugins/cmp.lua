@@ -17,6 +17,12 @@ return {
         require("luasnip.loaders.from_vscode").lazy_load()
 
         cmp.setup({
+            enabled = function ()
+                local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+                if buftype == "prompt" then return false end
+                return true
+            end,
+
             view = {
                 docs = { auto_open = true }
             },

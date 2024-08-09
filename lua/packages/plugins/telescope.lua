@@ -6,6 +6,7 @@ return {
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
     },
     config = function()
+        local actions = require("telescope.actions")
         require("telescope").setup({
             extensions = {
                 fzf = {
@@ -21,6 +22,18 @@ return {
                     cwd_only = true,
                 }
             },
+            defaults = {
+                mappings = {
+                    i = {
+                        ["<C-k>"] = actions.move_selection_previous, -- move to prev result
+                        ["<C-j>"] = actions.move_selection_next,   -- move to next result
+                    },
+                    n = {
+                        ["<C-k>"] = actions.move_selection_previous, -- move to prev result
+                        ["<C-j>"] = actions.move_selection_next,   -- move to next result
+                    },
+                },
+            }
         })
         local builtin = require("telescope.builtin")
         vim.keymap.set("n", "<C-o>", builtin.find_files, {})
