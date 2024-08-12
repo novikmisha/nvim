@@ -12,6 +12,7 @@ return {
 
     config = function()
         local cmp = require("cmp")
+        local luasnip = require("luasnip")
         local lspkind = require("lspkind")
 
         require("luasnip.loaders.from_vscode").lazy_load()
@@ -43,7 +44,15 @@ return {
                 ["<C-n>"] = cmp.config.disable,
                 ["<C-k>"] = cmp.mapping.select_prev_item(),
                 ["<C-j>"] = cmp.mapping.select_next_item(),
-                ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.confirm({ select = true })
+                    elseif luasnip.locally_jumpable(1) then
+                        luasnip.jump(1)
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
                 ['<CR>'] = cmp.mapping.confirm({ select = true }),
                 ['<C-s>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c', 's', 'v' }),
             }),
@@ -59,6 +68,12 @@ return {
                 format = lspkind.cmp_format({
                     maxwidth = 50,
                     ellipsis_char = "...",
+                    menu = ({             -- showing type in menu
+                        nvim_lsp = "[LSP]",
+                        path = "[Path]",
+                        buffer = "[Buffer]",
+                        luasnip = "[LuaSnip]",
+                    }),
                 }),
             },
 
