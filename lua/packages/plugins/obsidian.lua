@@ -15,8 +15,7 @@ return {
         "nvim-lua/plenary.nvim",
     },
     config = function()
-        require("obsidian").setup(
-            {
+        require("obsidian").setup({
                 workspaces = {
                     {
                         name = "personal",
