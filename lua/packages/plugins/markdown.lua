@@ -9,6 +9,22 @@ return {
     config = function()
         require("markview").setup({
             hybrid_modes = {"n"},
+            links = {
+                enable = true,
+                hyperlinks = {
+                    custom = {
+                    }
+                }
+
+            },
+            code_blocks = {
+                style = "language",
+
+                pad_amount = 4,
+                pad_char = " ",
+
+                hl = "CursorLine",
+            },
             horizontal_rules = {
                 parts = {
                     {

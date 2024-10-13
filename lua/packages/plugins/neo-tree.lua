@@ -7,6 +7,9 @@ return {
         "MunifTanjim/nui.nvim",
         -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
+    keys = {
+        { '<leader>1', '<cmd>Neotree filesystem toggle left<CR>' },
+    },
     config = function()
         require("neo-tree").setup({
             use_popups_for_input = false,
@@ -28,6 +31,5 @@ return {
                 width = 40
             }
         })
-        vim.keymap.set("n", "<leader>1", ":Neotree filesystem toggle left<CR>", {})
     end,
 }
