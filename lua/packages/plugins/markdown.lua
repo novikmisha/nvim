@@ -6,9 +6,14 @@ return {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons"
     },
+--     markview.nvim:  horizontal_rules  is deprecated. Use  markdown → horizontal_rules  instead.
+-- markview.nvim:  hybrid_modes  is deprecated. Use  preview → hybrid_modes  instead.
+-- markview.nvim:  code_blocks → hl  is deprecated. Use  code_blocks → border_hl  instead.
     config = function()
         require("markview").setup({
-            hybrid_modes = {"n"},
+            preview = {
+                hybrid_modes = {"n"},
+            },
             links = {
                 enable = true,
                 hyperlinks = {
@@ -23,58 +28,54 @@ return {
                 pad_amount = 4,
                 pad_char = " ",
 
-                hl = "CursorLine",
+                border_hl = "CursorLine",
             },
-            horizontal_rules = {
-                parts = {
-                    {
-                        type = "repeating",
-                        text = "─",
+            markdown = {
+                horizontal_rules = {
+                    parts = {
+                        {
+                            type = "repeating",
+                            text = "─",
 
-                        direction = "left",
-                        hl = {
-                            "Gradient1", "Gradient2",
-                            "Gradient3", "Gradient4",
-                            "Gradient5", "Gradient6",
-                            "Gradient7", "Gradient8",
-                            "Gradient9", "Gradient10"
+                            direction = "left",
+                            hl = { "Gradient1", "Gradient2", "Gradient3", "Gradient4", "Gradient5", "Gradient6", "Gradient7", "Gradient8", "Gradient9", "Gradient10" },
+
+                            repeat_amount = function ()
+                                local w = vim.api.nvim_win_get_width(0);
+                                local l = vim.api.nvim_buf_line_count(0);
+
+                                l = vim.fn.strchars(tostring(l)) + 4;
+
+                                return math.min(59, math.ceil((w - (l + 3)) / 2));
+                            end
                         },
-
-                        repeat_amount = function ()
-                            local w = vim.api.nvim_win_get_width(0);
-                            local l = vim.api.nvim_buf_line_count(0);
-
-                            l = vim.fn.strchars(tostring(l)) + 4;
-
-                            return math.min(59, math.ceil((w - (l + 3)) / 2));
-                        end
-                    },
-                    {
-                        type = "text",
-                        text = "  "
-                    },
-                    {
-                        type = "repeating",
-                        text = "─",
-
-                        direction = "right",
-                        hl = {
-                            "Gradient1", "Gradient2",
-                            "Gradient3", "Gradient4",
-                            "Gradient5", "Gradient6",
-                            "Gradient7", "Gradient8",
-                            "Gradient9", "Gradient10"
+                        {
+                            type = "text",
+                            text = "  "
                         },
+                        {
+                            type = "repeating",
+                            text = "─",
 
-                        repeat_amount = function ()
-                            local w = vim.api.nvim_win_get_width(0);
-                            local l = vim.api.nvim_buf_line_count(0);
+                            direction = "right",
+                            hl = {
+                                "Gradient1", "Gradient2",
+                                "Gradient3", "Gradient4",
+                                "Gradient5", "Gradient6",
+                                "Gradient7", "Gradient8",
+                                "Gradient9", "Gradient10"
+                            },
 
-                            l = vim.fn.strchars(tostring(l)) + 4;
+                            repeat_amount = function ()
+                                local w = vim.api.nvim_win_get_width(0);
+                                local l = vim.api.nvim_buf_line_count(0);
 
-                            return math.min(59, math.ceil((w - (l + 3)) / 2));
-                        end
-                    },
+                                l = vim.fn.strchars(tostring(l)) + 4;
+
+                                return math.min(59, math.ceil((w - (l + 3)) / 2));
+                            end
+                        },
+                    }
                 }
             }
         })

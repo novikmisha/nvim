@@ -6,13 +6,27 @@ return {
         "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
-        local cmp_nvim_lsp = require("cmp_nvim_lsp")
-        local capabilities = cmp_nvim_lsp.default_capabilities()
         vim.diagnostic.config({
             update_in_insert = true,
         })
+
+        vim.lsp.config('lua_ls', {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {
+                            'vim',
+                            'require',
+                        },
+                    },
+                },
+            },
+        })
         require("mason").setup()
-        require("mason-lspconfig").setup()
+        require("mason-lspconfig").setup({
+            automatic_enable = true,
+        })
+        --[[
         require("mason-lspconfig").setup_handlers({
             function(server_name)
                 require("lspconfig")[server_name].setup({
@@ -35,7 +49,7 @@ return {
                 }
             end,
         })
-
+        --]]
 
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
